@@ -20,7 +20,8 @@ class CreateEntriesTable extends Migration
             //autor
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            
+            //slug
+            $table->string('slug');
             $table->timestamps();
         });
     }
