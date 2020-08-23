@@ -30,10 +30,13 @@ class EntryController extends Controller
         return view('entries.create');
     }
     public function edit(Entry $entry){
+        $this->authorize('update',$entry);
         return view('entries.edit', compact('entry'));
     }
 
     public function update(Request $request, Entry $entry){
+        $this->authorize('update',$entry);
+        
         $valitedData = $request->validate([
             'title' => 'required|min:7|max:100|unique:entries,id,'.$entry->id,
             'content' =>'required|min:10|max:3000'
